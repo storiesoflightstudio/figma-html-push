@@ -129,6 +129,7 @@ async function processFigmaNode(node: FigmaJsonNode): Promise<SceneNode> {
     case 'TEXT':
       figmaNode = figma.createText();
       if (node.text) {
+        // Load fonts first
         await figma.loadFontAsync({ family: node.style?.fontFamily || "Inter", style: "Regular" });
         if (node.style?.fontWeight) {
           const weight = node.style.fontWeight >= 700 ? "Bold" : 
@@ -136,7 +137,11 @@ async function processFigmaNode(node: FigmaJsonNode): Promise<SceneNode> {
                         "Regular";
           await figma.loadFontAsync({ family: node.style?.fontFamily || "Inter", style: weight });
         }
+        
+        // Set text content
         (figmaNode as TextNode).characters = node.text;
+        
+        // Apply text styles
         if (node.style) {
           if (node.style.fontSize) {
             (figmaNode as TextNode).fontSize = node.style.fontSize;
@@ -168,6 +173,15 @@ async function processFigmaNode(node: FigmaJsonNode): Promise<SceneNode> {
             }
           }
         }
+        
+        // Set text dimensions after content is set
+        if (node.width) {
+          (figmaNode as TextNode).textAutoResize = "WIDTH_AND_HEIGHT";
+          // Resize after setting content to ensure proper text wrapping
+          setTimeout(() => {
+            (figmaNode as TextNode).resize(node.width, node.height || (figmaNode as TextNode).height);
+          }, 10);
+        }
       }
       break;
     default:
@@ -177,14 +191,14 @@ async function processFigmaNode(node: FigmaJsonNode): Promise<SceneNode> {
   // Common properties
   if (node.name) figmaNode.name = node.name;
   
-  // Position
+  // Position - relative to parent
   if (node.x !== undefined && node.y !== undefined) {
     figmaNode.x = node.x;
     figmaNode.y = node.y;
   }
   
   // Size
-  if (node.width !== undefined && node.height !== undefined) {
+  if (node.width !== undefined && node.height !== undefined && figmaNode.type !== 'TEXT') {
     figmaNode.resize(node.width, node.height);
   }
   

@@ -1,0 +1,289 @@
+{
+  "frames": [
+    {
+      "id": "heroSection",
+      "name": "Hero Section",
+      "type": "FRAME",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 800,
+      "backgroundColor": { "r": 0.95, "g": 0.95, "b": 0.98 },
+      "children": [
+        {
+          "id": "navbar",
+          "name": "Navigation Bar",
+          "type": "FRAME",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 80,
+          "backgroundColor": { "r": 1, "g": 1, "b": 1 },
+          "children": [
+            {
+              "id": "logo",
+              "name": "Logo",
+              "type": "RECTANGLE",
+              "x": 120,
+              "y": 20,
+              "width": 120,
+              "height": 40,
+              "cornerRadius": 8,
+              "fills": [
+                { "type": "SOLID", "color": { "r": 0.21, "g": 0.55, "b": 0.84 } }
+              ]
+            },
+            {
+              "id": "navMenu",
+              "name": "Nav Menu",
+              "type": "FRAME",
+              "x": 800,
+              "y": 20,
+              "width": 520,
+              "height": 40,
+              "children": [
+                {
+                  "id": "navItem1",
+                  "name": "Home",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 8,
+                  "width": 50,
+                  "height": 24,
+                  "text": "Home",
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 16,
+                    "fontWeight": 500,
+                    "fills": [
+                      { "type": "SOLID", "color": { "r": 0.2, "g": 0.2, "b": 0.2 } }
+                    ]
+                  }
+                },
+                {
+                  "id": "navItem2",
+                  "name": "Features",
+                  "type": "TEXT",
+                  "x": 100,
+                  "y": 8,
+                  "width": 80,
+                  "height": 24,
+                  "text": "Features",
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 16,
+                    "fontWeight": 500,
+                    "fills": [
+                      { "type": "SOLID", "color": { "r": 0.2, "g": 0.2, "b": 0.2 } }
+                    ]
+                  }
+                },
+                {
+                  "id": "navItem3",
+                  "name": "Pricing",
+                  "type": "TEXT",
+                  "x": 220,
+                  "y": 8,
+                  "width": 60,
+                  "height": 24,
+                  "text": "Pricing",
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 16,
+                    "fontWeight": 500,
+                    "fills": [
+                      { "type": "SOLID", "color": { "r": 0.2, "g": 0.2, "b": 0.2 } }
+                    ]
+                  }
+                },
+                {
+                  "id": "ctaButton",
+                  "name": "CTA Button",
+                  "type": "RECTANGLE",
+                  "x": 380,
+                  "y": 0,
+                  "width": 140,
+                  "height": 40,
+                  "cornerRadius": 6,
+                  "fills": [
+                    { "type": "SOLID", "color": { "r": 0.21, "g": 0.55, "b": 0.84 } }
+                  ],
+                  "children": [
+                    {
+                      "id": "ctaText",
+                      "name": "Get Started",
+                      "type": "TEXT",
+                      "x": 31,
+                      "y": 10,
+                      "width": 80,
+                      "height": 20,
+                      "text": "Get Started",
+                      "style": {
+                        "fontFamily": "Inter",
+                        "fontSize": 16,
+                        "fontWeight": 600,
+                        "fills": [
+                          { "type": "SOLID", "color": { "r": 1, "g": 1, "b": 1 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "heroContent",
+          "name": "Hero Content",
+          "type": "FRAME",
+          "x": 120,
+          "y": 160,
+          "width": 1200,
+          "height": 500,
+          "children": [
+            {
+              "id": "heroText",
+              "name": "Hero Text Container",
+              "type": "FRAME",
+              "x": 0,
+              "y": 40,
+              "width": 600,
+              "height": 420,
+              "children": [
+                {
+                  "id": "heroTitle",
+                  "name": "Hero Title",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 0,
+                  "width": 600,
+                  "height": 150,
+                  "text": "Transform Your Business\nwith Modern Solutions",
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 64,
+                    "fontWeight": 700,
+                    "lineHeightPx": 72,
+                    "fills": [
+                      { "type": "SOLID", "color": { "r": 0.1, "g": 0.1, "b": 0.1 } }
+                    ]
+                  }
+                },
+                {
+                  "id": "heroSubtitle",
+                  "name": "Hero Subtitle",
+                  "type": "TEXT",
+                  "x": 0,
+                  "y": 160,
+                  "width": 600,
+                  "height": 60,
+                  "text": "We help companies build digital products that solve real-world problems and deliver exceptional user experiences.",
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 20,
+                    "fontWeight": 400,
+                    "lineHeightPx": 30,
+                    "fills": [
+                      { "type": "SOLID", "color": { "r": 0.4, "g": 0.4, "b": 0.4 } }
+                    ]
+                  }
+                },
+                {
+                  "id": "heroButtons",
+                  "name": "Button Group",
+                  "type": "FRAME",
+                  "x": 0,
+                  "y": 280,
+                  "width": 400,
+                  "height": 60,
+                  "children": [
+                    {
+                      "id": "primaryButton",
+                      "name": "Primary Button",
+                      "type": "RECTANGLE",
+                      "x": 0,
+                      "y": 0,
+                      "width": 180,
+                      "height": 60,
+                      "cornerRadius": 8,
+                      "fills": [
+                        { "type": "SOLID", "color": { "r": 0.21, "g": 0.55, "b": 0.84 } }
+                      ],
+                      "children": [
+                        {
+                          "id": "primaryButtonText",
+                          "name": "Get Started",
+                          "type": "TEXT",
+                          "x": 49,
+                          "y": 19,
+                          "width": 82,
+                          "height": 22,
+                          "text": "Get Started",
+                          "style": {
+                            "fontFamily": "Inter",
+                            "fontSize": 18,
+                            "fontWeight": 600,
+                            "fills": [
+                              { "type": "SOLID", "color": { "r": 1, "g": 1, "b": 1 } }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "id": "secondaryButton",
+                      "name": "Secondary Button",
+                      "type": "RECTANGLE",
+                      "x": 200,
+                      "y": 0,
+                      "width": 180,
+                      "height": 60,
+                      "cornerRadius": 8,
+                      "fills": [
+                        { "type": "SOLID", "color": { "r": 1, "g": 1, "b": 1 } }
+                      ],
+                      "children": [
+                        {
+                          "id": "secondaryButtonText",
+                          "name": "Learn More",
+                          "type": "TEXT",
+                          "x": 51,
+                          "y": 19,
+                          "width": 80,
+                          "height": 22,
+                          "text": "Learn More",
+                          "style": {
+                            "fontFamily": "Inter",
+                            "fontSize": 18,
+                            "fontWeight": 600,
+                            "fills": [
+                              { "type": "SOLID", "color": { "r": 0.21, "g": 0.55, "b": 0.84 } }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "heroImage",
+              "name": "Hero Image",
+              "type": "RECTANGLE",
+              "x": 700,
+              "y": 40,
+              "width": 500,
+              "height": 420,
+              "cornerRadius": 16,
+              "fills": [
+                { "type": "SOLID", "color": { "r": 0.9, "g": 0.9, "b": 0.9 } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
