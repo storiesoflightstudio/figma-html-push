@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    window.onload = () => {
+      document.body.innerText = 'Hello from UI';
+      parent.postMessage({ pluginMessage: { type: 'hello' } }, '*');
+    }
+  </script>
+</body>
+</html>

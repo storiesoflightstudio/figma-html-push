@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML to Figma</title>
+  <style>
+    :root {
+      --figma-color-bg: #FFFFFF;
+      --figma-color-text: #333333;
+      --figma-color-brand: #0D99FF;
+      --figma-color-border: #E5E5E5;
+      --figma-color-hover: #F5F5F5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --figma-color-bg: #2C2C2C;
+        --figma-color-text: #FFFFFF;
+        --figma-color-border: #444444;
+        --figma-color-hover: #3C3C3C;
+      }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--figma-color-bg);
+      color: var(--figma-color-text);
+      font-size: 12px;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .textarea-wrapper {
+      position: relative;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 12px;
+      border: 1px solid var(--figma-color-border);
+      border-radius: 4px;
+      background-color: var(--figma-color-bg);
+      color: var(--figma-color-text);
+      box-sizing: border-box;
+      min-height: 120px;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+    }
+
+    .file-upload {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: var(--figma-color-bg);
+      border: 1px solid var(--figma-color-border);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .check-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .check-group input {
+      margin-right: 8px;
+    }
+
+    .check-group label {
+      display: inline;
+      margin-bottom: 0;
+    }
+
+    button {
+      background-color: var(--figma-color-brand);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      background-color: var(--figma-color-border);
+      cursor: not-allowed;
+    }
+
+    .button-secondary {
+      background-color: transparent;
+      color: var(--figma-color-text);
+      border: 1px solid var(--figma-color-border);
+      margin-top: 8px;
+    }
+
+    .status {
+      font-size: 12px;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--figma-color-border);
+    }
+
+    .tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid var(--figma-color-brand);
+      font-weight: 500;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .loading {
+      display: none;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .spinner {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 3px solid var(--figma-color-brand);
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .input-row .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 12px;
+      border: 1px solid var(--figma-color-border);
+      border-radius: 4px;
+      background-color: var(--figma-color-bg);
+      color: var(--figma-color-text);
+      box-sizing: border-box;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .note {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>HTML to Figma Converter</h2>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="json-tab">JSON</div>
+      <div class="tab" data-tab="options-tab">Options</div>
+    </div>
+    
+    <div class="tab-content active" id="json-tab">
+      <div class="form-group">
+        <label for="jsonData">Paste your JSON data from HTML parser</label>
+        <div class="textarea-wrapper">
+          <textarea id="jsonData" placeholder='{"type": "body", "styles": {...}, "children": [...]}' rows="15"></textarea>
+          <label for="jsonFile" class="file-upload">Upload JSON</label>
+          <input type="file" id="jsonFile" class="file-input" accept=".json">
+        </div>
+        <div class="note">Paste JSON output from the parser.js script or upload a JSON file</div>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="options-tab">
+      <div class="check-group">
+        <input type="checkbox" id="preserveColors" checked>
+        <label for="preserveColors">Preserve colors</label>
+      </div>
+      
+      <div class="check-group">
+        <input type="checkbox" id="preserveTextStyles" checked>
+        <label for="preserveTextStyles">Preserve text styles</label>
+      </div>
+      
+      <div class="check-group">
+        <input type="checkbox" id="useAutoLayout" checked>
+        <label for="useAutoLayout">Use Auto Layout</label>
+      </div>
+      
+      <div class="check-group">
+        <input type="checkbox" id="flattenDivs">
+        <label for="flattenDivs">Flatten empty divs</label>
+      </div>
+      
+      <div class="check-group">
+        <input type="checkbox" id="extractComponents">
+        <label for="extractComponents">Extract repeated elements as components</label>
+      </div>
+      
+      <div class="form-group">
+        <label for="defaultFontFamily">Default Font Family</label>
+        <input type="text" id="defaultFontFamily" value="Inter">
+      </div>
+      
+      <div class="input-row">
+        <div class="form-group">
+          <label for="viewportWidth">Viewport Width</label>
+          <input type="number" id="viewportWidth" value="1440">
+        </div>
+        <div class="form-group">
+          <label for="viewportHeight">Viewport Height</label>
+          <input type="number" id="viewportHeight" value="900">
+        </div>
+      </div>
+    </div>
+
+    <button id="convertBtn">Convert to Figma</button>
+    <button id="cancelBtn" class="button-secondary">Cancel</button>
+    
+    <div class="loading" id="loadingIndicator">
+      <div class="spinner"></div>
+    </div>
+    
+    <div class="status" id="statusMessage"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching functionality
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Add active class to current tab and content
+          this.classList.add('active');
+          document.getElementById(this.dataset.tab).classList.add('active');
+        });
+      });
+      
+      // File upload handling
+      const jsonFileInput = document.getElementById('jsonFile');
+      const jsonDataTextarea = document.getElementById('jsonData');
+      
+      jsonFileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const contents = e.target.result;
+            jsonDataTextarea.value = contents;
+          };
+          reader.readAsText(file);
+        }
+      });
+      
+      // Form submission
+      const convertBtn = document.getElementById('convertBtn');
+      const cancelBtn = document.getElementById('cancelBtn');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+      const statusMessage = document.getElementById('statusMessage');
+
+      convertBtn.addEventListener('click', function() {
+        const jsonData = jsonDataTextarea.value;
+        
+        if (!jsonData) {
+          statusMessage.textContent = 'Please paste JSON data or upload a JSON file.';
+          return;
+        }
+        
+        try {
+          // Parse the JSON data
+          const parsedData = JSON.parse(jsonData);
+          
+          // Get options
+          const options = {
+            preserveColors: document.getElementById('preserveColors').checked,
+            preserveTextStyles: document.getElementById('preserveTextStyles').checked,
+            useAutoLayout: document.getElementById('useAutoLayout').checked,
+            flattenDivs: document.getElementById('flattenDivs').checked,
+            extractComponents: document.getElementById('extractComponents').checked,
+            defaultFontFamily: document.getElementById('defaultFontFamily').value,
+            viewportWidth: parseInt(document.getElementById('viewportWidth').value),
+            viewportHeight: parseInt(document.getElementById('viewportHeight').value)
+          };
+          
+          // Show loading state
+          convertBtn.disabled = true;
+          loadingIndicator.style.display = 'flex';
+          statusMessage.textContent = 'Converting JSON to Figma...';
+          
+          // Send data to plugin code
+          parent.postMessage({ 
+            pluginMessage: { 
+              type: 'convert-json', 
+              jsonData: parsedData,
+              options
+            }
+          }, '*');
+        } catch (error) {
+          statusMessage.textContent = 'Error parsing JSON: ' + error.message;
+        }
+      });
+
+      cancelBtn.addEventListener('click', function() {
+        parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+      });
+
+      // Listen for messages from the plugin code
+      window.onmessage = function(event) {
+        const message = event.data.pluginMessage;
+        
+        if (message.type === 'conversion-complete') {
+          convertBtn.disabled = false;
+          loadingIndicator.style.display = 'none';
+          statusMessage.textContent = 'HTML converted to Figma successfully!';
+        } else if (message.type === 'conversion-error') {
+          convertBtn.disabled = false;
+          loadingIndicator.style.display = 'none';
+          statusMessage.textContent = 'Error: ' + message.error;
+        } else if (message.type === 'conversion-status') {
+          statusMessage.textContent = message.message || 'Processing...';
+        }
+      };
+    });
+  </script>
+</body>
+</html>
