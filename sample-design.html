@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+        }
+        
+        .hero-section {
+            width: 1440px;
+            height: 800px;
+            background-color: #f2f2fa;
+            position: relative;
+        }
+        
+        .navbar {
+            width: 1440px;
+            height: 80px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 120px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 40px;
+            background-color: #368cd7;
+            border-radius: 8px;
+        }
+        
+        .nav-menu {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 100px;
+        }
+        
+        .nav-item {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .cta-button {
+            width: 140px;
+            height: 40px;
+            background-color: #368cd7;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .hero-content {
+            padding: 80px 120px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 72px;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 30px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .primary-button {
+            width: 180px;
+            height: 60px;
+            background-color: #368cd7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .secondary-button {
+            width: 180px;
+            height: 60px;
+            background-color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #368cd7;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px solid #368cd7;
+        }
+        
+        .hero-image {
+            width: 500px;
+            height: 420px;
+            background-color: #e6e6e6;
+            border-radius: 16px;
+        }
+        
+        .features-section {
+            width: 1440px;
+            height: 800px;
+            background-color: white;
+            padding: 120px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .features-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+        
+        .features-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #666;
+        }
+        
+        .features-grid {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .feature-card {
+            width: 380px;
+            height: 320px;
+            background-color: #fafaff;
+            border-radius: 16px;
+            padding: 40px;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #368cd7;
+            border-radius: 16px;
+            margin-bottom: 36px;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <nav class="navbar">
+            <div class="logo"></div>
+            <div class="nav-menu">
+                <span class="nav-item">Home</span>
+                <span class="nav-item">Features</span>
+                <span class="nav-item">Pricing</span>
+                <div class="cta-button">Get Started</div>
+            </div>
+        </nav>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Transform Your Business<br>with Modern Solutions</h1>
+                <p class="hero-subtitle">We help companies build digital products that solve real-world problems and deliver exceptional user experiences.</p>
+                <div class="button-group">
+                    <div class="primary-button">Get Started</div>
+                    <div class="secondary-button">Learn More</div>
+                </div>
+            </div>
+            <div class="hero-image"></div>
+        </div>
+    </div>
+    
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="section-title">
+            <h2 class="features-title">Powerful Features</h2>
+            <p class="features-subtitle">Everything you need to succeed in the digital age</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Advanced Analytics</h3>
+                <p class="feature-description">Get deep insights into your data with our powerful analytics dashboard and reporting tools.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Real-time Collaboration</h3>
+                <p class="feature-description">Work together seamlessly with your team in real-time, no matter where you are.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Advanced Security</h3>
+                <p class="feature-description">Enterprise-grade security features to keep your data safe and compliant with regulations.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
