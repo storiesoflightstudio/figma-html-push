@@ -226,11 +226,26 @@
       <div class="form-group">
         <label for="jsonData">Paste your JSON data from HTML parser</label>
         <div class="textarea-wrapper">
-          <textarea id="jsonData" placeholder='{"type": "body", "styles": {...}, "children": [...]}' rows="15"></textarea>
+          <textarea id="jsonData" placeholder='Paste Figma JSON like:
+{
+  "frames": [
+    {
+      "id": "heroSection",
+      "name": "Hero Section",
+      "type": "FRAME",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 600,
+      "backgroundColor": { "r": 1, "g": 1, "b": 1 },
+      "children": [...]
+    }
+  ]
+}' rows="15"></textarea>
           <label for="jsonFile" class="file-upload">Upload JSON</label>
           <input type="file" id="jsonFile" class="file-input" accept=".json">
         </div>
-        <div class="note">Paste JSON output from the parser.js script or upload a JSON file</div>
+        <div class="note">Paste Figma-style JSON or HTML-derived JSON. This plugin supports both formats!</div>
       </div>
     </div>
     

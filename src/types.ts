@@ -22,13 +22,36 @@ export interface JsonNode {
   alt?: string;
 }
 
-export interface ConversionOptions {
-  preserveColors?: boolean;
-  preserveTextStyles?: boolean;
-  useAutoLayout?: boolean;
-  flattenDivs?: boolean;
-  extractComponents?: boolean;
-  defaultFontFamily?: string;
+// Figma-style JSON types
+export interface FigmaJsonNode {
+  id: string;
+  name: string;
+  type: 'FRAME' | 'RECTANGLE' | 'TEXT' | 'IMAGE' | 'GROUP' | 'COMPONENT';
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  backgroundColor?: ColorObject | string;
+  cornerRadius?: number;
+  fills?: Paint[];
+  children?: FigmaJsonNode[];
+  text?: string;
+  style?: TextStyle;
+}
+
+export interface TextStyle {
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  lineHeightPx?: number;
+  fills?: Paint[];
+}
+
+export interface Paint {
+  type: 'SOLID' | 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'GRADIENT_ANGULAR' | 'GRADIENT_DIAMOND' | 'IMAGE' | 'EMOJI';
+  color?: ColorObject | string;
+  scaleMode?: 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
+  imageHash?: string;
 }
 
 export interface ColorObject {
@@ -36,6 +59,15 @@ export interface ColorObject {
   g: number;
   b: number;
   a?: number;
+}
+
+export interface ConversionOptions {
+  preserveColors?: boolean;
+  preserveTextStyles?: boolean;
+  useAutoLayout?: boolean;
+  flattenDivs?: boolean;
+  extractComponents?: boolean;
+  defaultFontFamily?: string;
 }
 
 // Node creation function types
